@@ -33,6 +33,8 @@ def _go_download_sdk_impl(ctx):
     res = ctx.execute(['uname', '-p'])
     if res.return_code == 0 and res.stdout == 's390x':
       host = "linux_s390x"
+    elif res.return_code == 0 and res.stdout == 'ppc64le':
+      host = "linux_ppc64le"
     else:
       # uname -p, -i, and -m can return wildly different values on different
       # distributions and versions. Always default to amd64.
