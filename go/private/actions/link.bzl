@@ -144,7 +144,7 @@ def _bootstrap_link(go, archive, executable, gc_linkopts):
       inputs = inputs + go.sdk_files + go.sdk_tools,
       outputs = [executable],
       mnemonic = "GoLink",
-      command = "export GOROOT=$(pwd)/{} && export GOROOT_FINAL=GOROOT && {} {}".format(go.root, go.go.path, " ".join(args)),
+      command = "export GOROOT=$(pwd)/{} && export GOROOT_FINAL=GOROOT && export PATH={} && {} {}".format(go.root, go.cgo_tools.compiler_path, go.go.path, " ".join(args)),
   )
 
 def _extract_extldflags(gc_linkopts, extldflags):
